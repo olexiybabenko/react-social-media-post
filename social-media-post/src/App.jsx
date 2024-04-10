@@ -1,15 +1,23 @@
+// Import
 import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
-import "./App.css";
+// Components
+import Header from "./components/Header"; // Header component
+import PostPhoto from "./components/PostPhoto"; // PostPhoto component
+// Images
+import profileLogo from "./assets/babenko-logo.png"; // profile image
+import postImage from "./assets/post-image.jpg"; // post image
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <>
-      <h1 className="bg-red-700 text-3xl font-bold underline">Hello world!</h1>
-    </>
+    // Content wrapper
+    <div className="py-3 px-2">
+      {/*Header*/}
+      <Header title={"babenko"} image={profileLogo} />
+      {/*Post photo*/}
+      <PostPhoto image={postImage} />
+    </div>
   );
 }
 
