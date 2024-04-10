@@ -1,8 +1,8 @@
 // Import
 import { useState } from "react"; // useState function
 
-// PostPhoto component
-export default function PostPhoto({ image }) {
+// PostContent component
+export default function PostContent({ postImage, postText }) {
   // Liked: useState to watch if the like is clicked
   const [liked, setLiked] = useState("false");
   // Define a function if the like is clicked
@@ -21,10 +21,10 @@ export default function PostPhoto({ image }) {
 
   // JSX Output
   return (
-    <div className="pt-2">
+    <div className="pt-2 max-w-96">
       {/*Photo*/}
-      <div className="max-w-96">
-        <img src={image} alt="" />
+      <div className="">
+        <img src={postImage} alt="postImage" />
       </div>
       {/*Svg icons*/}
       <div className="flex justify-between">
@@ -60,6 +60,8 @@ export default function PostPhoto({ image }) {
           </svg>
         </div>
       </div>
+      {/*Post text*/}
+      <p className="text-wrap text-justify">{postText}</p>
     </div>
   );
 }
