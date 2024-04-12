@@ -5,6 +5,8 @@ import viteLogo from "/vite.svg";
 // Components
 import Header from "./components/Header"; // Header component
 import PostContent from "./components/PostContent"; // PostPhoto component
+import CommentsSection from "./components/CommentsSection"; // CommentsSection component
+import PostComment from "./components/PostComment"; // PostComment component
 // Images
 import profileLogo from "./assets/profile-logo.jpg"; // profile image
 import postImage from "./assets/post-image.jpg"; // post image
@@ -26,6 +28,16 @@ function App() {
         postImage={POST_DESCRIPTION[0].postImage}
         postText={POST_DESCRIPTION[0].postText}
       />
+      {/* Comments section */}
+      <CommentsSection
+        commenterName={POST_DESCRIPTION[0].name}
+        commenterImage={POST_DESCRIPTION[0].profileImage}
+      >
+        <PostComment
+          name={POST_DESCRIPTION[0].name}
+          profileImage={POST_DESCRIPTION[0].profileImage}
+        />
+      </CommentsSection>
     </div>
   );
 }

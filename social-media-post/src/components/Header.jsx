@@ -18,14 +18,14 @@ export default function Header({ profileImage, name, location }) {
       <div>
         <div className="flex  flex-nowrap gap-1">
           <h1>{name}</h1>
+          {/*Verified icon*/}
           <div className="max-w-3 mt-1.5">
             <img src={verifiedIcon} alt="verified icon" />
           </div>
         </div>
-
+        {/*Location*/}
         <p className="text-xs font-light">{location}</p>
       </div>
-      {/*Verified icon*/}
     </div>
   );
 }
