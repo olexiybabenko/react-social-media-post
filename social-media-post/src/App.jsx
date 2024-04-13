@@ -12,6 +12,7 @@ import profileLogo from "./assets/profile-logo.jpg"; // profile image
 import postImage from "./assets/post-image.jpg"; // post image
 // Data
 import { POST_DESCRIPTION } from "./data"; // post description
+import { COMMENTS_DATA } from "./data"; // comments data
 
 function App() {
   return (
@@ -29,14 +30,16 @@ function App() {
         postText={POST_DESCRIPTION[0].postText}
       />
       {/* Comments section */}
-      <CommentsSection
-        commenterName={POST_DESCRIPTION[0].name}
-        commenterImage={POST_DESCRIPTION[0].profileImage}
-      >
-        <PostComment
-          name={POST_DESCRIPTION[0].name}
-          profileImage={POST_DESCRIPTION[0].profileImage}
-        />
+      <CommentsSection>
+        {/*Automatically fill the comments*/}
+        {COMMENTS_DATA.map((comment) => (
+          <PostComment
+            key={comment.commentText}
+            name={comment.name}
+            profileImage={comment.profileImage}
+            initialCommentText={comment.commentText}
+          />
+        ))}
       </CommentsSection>
     </div>
   );

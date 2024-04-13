@@ -1,12 +1,13 @@
 // Import
 import { useState } from "react"; // useState function
 import PostComment from "./PostComment"; // PostComment component
+import { ACTIVE_USERS } from "../data"; // Active users array
 
 // CommentsSection component
 export default function CommentsSection({
   children,
-  commenterName = "user",
-  commenterImage,
+  commenterName = ACTIVE_USERS[0].name,
+  commenterImage = ACTIVE_USERS[0].profileImage,
 }) {
   // useState function - watches comment published
 

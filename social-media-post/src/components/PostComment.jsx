@@ -2,7 +2,11 @@
 import { useState } from "react"; // useState function
 
 // PostComment Component
-export default function PostComment({ profileImage, name }) {
+export default function PostComment({
+  profileImage,
+  name,
+  initialCommentText,
+}) {
   // Liked: useState to watch if the like is clicked
   const [liked, setLiked] = useState("false");
   // Define a function if the like is clicked
@@ -20,7 +24,7 @@ export default function PostComment({ profileImage, name }) {
   }
 
   // Change comment: useState - change of comment
-  const [commentText, setCommentText] = useState("Some comment text");
+  const [commentText, setCommentText] = useState(initialCommentText);
   // handleChange function - watch change of comment
   function handleChange(event) {
     // Change the of the comment
@@ -33,7 +37,7 @@ export default function PostComment({ profileImage, name }) {
     // Change currentCommentText from p to input
     currentCommentText = (
       <input
-        className="text-xs font-light w-fit inline-block "
+        className="text-xs font-light w-full text-wrap"
         type="text"
         required
         value={commentText}
@@ -46,7 +50,7 @@ export default function PostComment({ profileImage, name }) {
   return (
     <div className="flex justify-between border-b py-2">
       {/*Left side */}
-      <div className=" flex justify-start flex-nowrap  gap-3">
+      <div className=" flex justify-start flex-nowrap  gap-3 w-full">
         {/*Profile image*/}
         <div className="max-w-8">
           <img
@@ -56,7 +60,7 @@ export default function PostComment({ profileImage, name }) {
           />
         </div>
         {/*Text*/}
-        <div>
+        <div className="w-full">
           {/*Commenter name*/}
           <p className="text-xs"> {name}</p>
           {/*Comment text*/}
