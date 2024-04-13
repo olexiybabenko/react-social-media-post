@@ -9,7 +9,35 @@ export default function CommentsSection({
   commenterName = ACTIVE_USERS[0].name,
   commenterImage = ACTIVE_USERS[0].profileImage,
 }) {
-  // useState function - watches comment published
+  // Write comment: useState - change of comment
+  const [commentText, setCommentText] = useState();
+  // handleChange function - watch change of comment
+  function handleChange(event) {
+    // Change the of the comment
+    setCommentText(event.target.value);
+  }
+
+  // Publish comment: useState function - watches comment published
+  const [publishedComments, setPublishedComments] = useState([]);
+  // Define nextId - this is required
+  let nextId = 0;
+  // Define handlePublish function - it will add an element to the comments section once the publish button is clicked
+  function handlePublish() {
+    // use setPublish so that useState watches it
+    setPublishedComments([
+      ...publishedComments,
+      { id: nextId++, commentText: commentText },
+    ]);
+  }
+  // Currently published comments
+  let currentlyPublishedComments = publishedComments.map((comment) => (
+    <PostComment
+      key={comment.id}
+      name={ACTIVE_USERS[0].name}
+      profileImage={ACTIVE_USERS[0].profileImage}
+      initialCommentText={comment.commentText}
+    />
+  ));
 
   // Define placeholders that will be conditionally displayed
   // Define the comment placeholder
@@ -28,7 +56,9 @@ export default function CommentsSection({
       {/* Comments section title */}
       <p className="text-center text-xs font-medium pb-2 border-b">Comments</p>
       {/* Older comments if they exist or the  noCommentsPlaceholder*/}
-      {children ? children : noCommentsPlaceholder}
+      {publishedComments.length > 0
+        ? currentlyPublishedComments
+        : noCommentsPlaceholder}
       {/* Comment input field */}
       <div className="pt-5 flex justify-between flex-nowrap gap-3">
         {/* Left side */}
@@ -46,10 +76,11 @@ export default function CommentsSection({
             type="text"
             required
             placeholder={commentPlaceholder}
+            onChange={handleChange}
           />
         </div>
         {/*Comment button*/}
-        <button className="">
+        <button className="" onClick={handlePublish}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             strokeWidth={1}
