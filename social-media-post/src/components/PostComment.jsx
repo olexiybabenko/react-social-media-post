@@ -6,9 +6,10 @@ export default function PostComment({
   profileImage,
   name,
   initialCommentText,
+  onDelete,
 }) {
   // Liked: useState to watch if the like is clicked
-  const [liked, setLiked] = useState("false");
+  const [liked, setLiked] = useState(false);
   // Define a function if the like is clicked
   function handleLike() {
     // define setLiked that changes the liked property
@@ -16,7 +17,7 @@ export default function PostComment({
   }
 
   // Edditing: useState to watch if the comment is eddited
-  const [isEditting, setIsEditting] = useState("false");
+  const [isEditting, setIsEditting] = useState(false);
   // Add the handleEdit function
   function handleEditClick() {
     // Define the setIsEditting function that is watched by useState
@@ -70,7 +71,7 @@ export default function PostComment({
             <button onClick={handleEditClick}>
               {!isEditting ? "Edit" : "Save"}
             </button>
-            <button>Delete</button>
+            <button onClick={onDelete}>Delete</button>
           </div>
         </div>
       </div>

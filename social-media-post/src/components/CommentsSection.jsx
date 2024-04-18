@@ -3,6 +3,9 @@ import { useState } from "react"; // useState function
 import PostComment from "./PostComment"; // PostComment component
 import { ACTIVE_USERS } from "../data"; // Active users array
 
+// Define nextId - this is required to add keys to the mapped list
+let nextId = 0;
+
 // CommentsSection component
 export default function CommentsSection({
   children,
@@ -19,16 +22,23 @@ export default function CommentsSection({
 
   // Publish comment: useState function - watches comment published
   const [publishedComments, setPublishedComments] = useState([]);
-  // Define nextId - this is required
-  let nextId = 0;
+
   // Define handlePublish function - it will add an element to the comments section once the publish button is clicked
   function handlePublish() {
     // use setPublish so that useState watches it
-    setPublishedComments([
-      ...publishedComments,
-      { id: nextId++, commentText: commentText },
-    ]);
+    setPublishedComments(
+      // Add element to the comments list
+      [...publishedComments, { id: nextId++, commentText: commentText }]
+    );
   }
+  // Define handleDelete function - it will delete comment from the publishedComments list
+  function handleDelete(comment) {
+    // use setPublish so that useState watches it
+    setPublishedComments((oldComments) => {
+      return oldComments.filter((commentItem) => commentItem.id !== comment.id);
+    });
+  }
+
   // Currently published comments
   let currentlyPublishedComments = publishedComments.map((comment) => (
     <PostComment
@@ -36,6 +46,7 @@ export default function CommentsSection({
       name={ACTIVE_USERS[0].name}
       profileImage={ACTIVE_USERS[0].profileImage}
       initialCommentText={comment.commentText}
+      onDelete={() => handleDelete(comment)}
     />
   ));
 
