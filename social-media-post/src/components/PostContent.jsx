@@ -4,7 +4,7 @@ import { useState } from "react"; // useState function
 // PostContent component
 export default function PostContent({ postImage, postText }) {
   // Liked: useState to watch if the like is clicked
-  const [liked, setLiked] = useState("false");
+  const [liked, setLiked] = useState(false);
   // Define a function if the like is clicked
   function handleLike() {
     // define setLiked that changes the liked property
@@ -12,7 +12,7 @@ export default function PostContent({ postImage, postText }) {
   }
 
   // useState to watch if bookmark is clicked
-  const [saved, setSaved] = useState("false");
+  const [saved, setSaved] = useState(false);
   // Define a function to watch if saved
   function handleSave() {
     // define setSaved that changes the liked property
