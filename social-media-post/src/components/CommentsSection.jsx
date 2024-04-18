@@ -30,6 +30,8 @@ export default function CommentsSection({
       // Add element to the comments list
       [...publishedComments, { id: nextId++, commentText: commentText }]
     );
+    // Clear the input field text
+    setCommentText("");
   }
   // Define handleDelete function - it will delete comment from the publishedComments list
   function handleDelete(comment) {
@@ -86,6 +88,7 @@ export default function CommentsSection({
             className="text-xs w-full focus:border-0"
             type="text"
             required
+            value={commentText}
             placeholder={commentPlaceholder}
             onChange={handleChange}
           />
