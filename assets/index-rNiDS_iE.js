@@ -9027,11 +9027,11 @@ function Dd({ profileImage: e, name: n, location: t }) {
   });
 }
 function Fd({ postImage: e, postText: n }) {
-  const [t, r] = Fe.useState("false");
+  const [t, r] = Fe.useState(false);
   function l() {
     r((s) => !s);
   }
-  const [o, i] = Fe.useState("false");
+  const [o, i] = Fe.useState(false);
   function u() {
     i((s) => !s);
   }
